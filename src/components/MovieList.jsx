@@ -14,22 +14,22 @@ class MovieList extends React.Component {
       return movies.filter(({ title, subtitle, storyline }) => title.includes(searchText)
         || subtitle.includes(searchText) || storyline.includes(searchText))
         .filter(({ bookmarked }) => bookmarked === true)
-        .map((movie) => <MovieCard key={ movie.title } movie={ movie } />);
+        .map((movie) => <MovieCard data-testid="movie-card" key={ movie.title } movie={ movie } />);
     } if (bookmarkedOnly === true && selectedGenre !== '') {
       return movies.filter(({ title, subtitle, storyline }) => title.includes(searchText)
         || subtitle.includes(searchText) || storyline.includes(searchText))
         .filter(({ bookmarked }) => bookmarked === true)
         .filter(({ genre }) => genre === selectedGenre)
-        .map((movie) => <MovieCard key={ movie.title } movie={ movie } />);
+        .map((movie) => <MovieCard data-testid="movie-card" key={ movie.title } movie={ movie } />);
     } if (bookmarkedOnly === false && selectedGenre !== '') {
       return movies.filter(({ title, subtitle, storyline }) => title.includes(searchText)
         || subtitle.includes(searchText) || storyline.includes(searchText))
         .filter(({ genre }) => genre === selectedGenre)
-        .map((movie) => <MovieCard key={ movie.title } movie={ movie } />);
+        .map((movie) => <MovieCard data-testid="movie-card" key={ movie.title } movie={ movie } />);
     }
     return movies.filter(({ title, subtitle, storyline }) => title.includes(searchText)
         || subtitle.includes(searchText) || storyline.includes(searchText))
-      .map((movie) => <MovieCard key={ movie.title } movie={ movie } />);
+      .map((movie) => <MovieCard data-testid="movie-card" key={ movie.title } movie={ movie } />);
   }
 
   render() {

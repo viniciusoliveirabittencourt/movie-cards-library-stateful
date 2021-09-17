@@ -15,6 +15,18 @@ class AddMovie extends React.Component {
       genre: 'action',
     };
     this.addState = this.addState.bind(this);
+    this.resetState = this.resetState.bind(this);
+  }
+
+  resetState() {
+    this.setState({
+      subtitle: '',
+      title: '',
+      imagePath: '',
+      storyline: '',
+      rating: 0,
+      genre: 'action',
+    })
   }
 
   addState({ target }) {
@@ -58,8 +70,8 @@ class AddMovie extends React.Component {
           </select>
           <button
             data-testid="send-button"
-            type="submit"
-            onClick={ () => onClick(this.state, movie) }
+            type="button"
+            onClick={ () => onClick(this.state, movie, this.resetState()) }
           >
             Adicionar filme
           </button>

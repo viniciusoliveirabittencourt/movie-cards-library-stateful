@@ -26,11 +26,12 @@ class MovieLibrary extends React.Component {
     });
   }
 
-  addMovieList(state, movie) {
+  addMovieList(state, movie, callback) {
     movie.push(state);
     this.setState({
       movies: movie,
     });
+    callback();
   }
 
   render() {
