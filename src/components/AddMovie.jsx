@@ -41,7 +41,7 @@ class AddMovie extends React.Component {
       subtitle, title, imagePath,
       storyline, rating, genre,
     } = this.state;
-    const { movie, onClick } = this.props;
+    const { onClick } = this.props;
     return (
       <form data-testid="add-movie-form">
         <TitleSubtitle subtitle={ subtitle } addState={ this.addState } title={ title } />
@@ -71,7 +71,7 @@ class AddMovie extends React.Component {
           <button
             data-testid="send-button"
             type="button"
-            onClick={ () => onClick(this.state, movie, this.resetState()) }
+            onClick={ () => onClick(this.state, this.resetState()) }
           >
             Adicionar filme
           </button>
@@ -82,9 +82,6 @@ class AddMovie extends React.Component {
 }
 
 AddMovie.propTypes = {
-  movie: PropTypes.arrayOf(
-    PropTypes.object.isRequired,
-  ).isRequired,
   onClick: PropTypes.func.isRequired,
 };
 
