@@ -4,8 +4,8 @@ import PropTypes from 'prop-types';
 class ImapathStoryline extends React.Component {
   render() {
     const {
-      imagePath,
-      storyline,
+      image,
+      story,
       addState,
     } = this.props;
     return (
@@ -16,7 +16,7 @@ class ImapathStoryline extends React.Component {
             name="imagePath"
             data-testid="image-input"
             type="text"
-            value={ imagePath }
+            value={ image }
             onChange={ addState }
           />
         </label>
@@ -25,7 +25,7 @@ class ImapathStoryline extends React.Component {
           <textarea
             name="storyline"
             data-testid="storyline-input"
-            value={ storyline }
+            value={ story }
             onChange={ addState }
           />
         </label>
@@ -35,8 +35,8 @@ class ImapathStoryline extends React.Component {
 }
 
 ImapathStoryline.propTypes = {
-  imagePath: PropTypes.string.isRequired,
-  storyline: PropTypes.string.isRequired,
+  image: PropTypes.string.isRequired,
+  story: PropTypes.string.isRequired,
   addState: PropTypes.func.isRequired,
 };
 

@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import SearchBar from './SearchBar';
 import AddMovie from './AddMovie';
+import MovieList from './MovieList';
 
 class MovieLibrary extends React.Component {
   constructor(props) {
@@ -43,6 +44,12 @@ class MovieLibrary extends React.Component {
           onBookmarkedChange={ this.modifiState }
           selectedGenre={ selectedGenre }
           onSelectedGenreChange={ this.modifiState }
+        />
+        <MovieList
+          searchText={ searchText }
+          bookmarkedOnly={ bookmarkedOnly }
+          selectedGenre={ selectedGenre }
+          movies={ movies }
         />
         <AddMovie movie={ movies } onClick={ this.addMovieList } />
       </main>
