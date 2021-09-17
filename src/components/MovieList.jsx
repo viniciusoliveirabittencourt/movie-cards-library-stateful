@@ -8,28 +8,38 @@ class MovieList extends React.Component {
     this.filtraOsFilmes = this.filtraOsFilmes.bind(this);
   }
 
+  arrMap(...arr) {
+    return arr[0].map((movie) => (<MovieCard
+      data-testid="movie-card"
+      key={ movie.title }
+      movie={ movie }
+    />));
+  }
+
+  searchTextFun(searchText, ...arr) {
+    return arr[0].filter(({ title, subtitle, storyline }) => title
+      .includes(searchText)
+      || subtitle.includes(searchText) || storyline.includes(searchText));
+  }
+
   filtraOsFilmes() {
     const { searchText, bookmarkedOnly, selectedGenre, movies } = this.props;
     if (bookmarkedOnly === true && selectedGenre === '') {
-      return movies.filter(({ title, subtitle, storyline }) => title.includes(searchText)
-        || subtitle.includes(searchText) || storyline.includes(searchText))
-        .filter(({ bookmarked }) => bookmarked === true)
-        .map((movie) => <MovieCard data-testid="movie-card" key={ movie.title } movie={ movie } />);
+      const arr = this.searchTextFun(searchText, movies)
+        .filter(({ bookmarked }) => bookmarked === true);
+      return this.arrMap(arr);
     } if (bookmarkedOnly === true && selectedGenre !== '') {
-      return movies.filter(({ title, subtitle, storyline }) => title.includes(searchText)
-        || subtitle.includes(searchText) || storyline.includes(searchText))
+      const arr = this.searchTextFun(searchText, movies)
         .filter(({ bookmarked }) => bookmarked === true)
-        .filter(({ genre }) => genre === selectedGenre)
-        .map((movie) => <MovieCard data-testid="movie-card" key={ movie.title } movie={ movie } />);
+        .filter(({ genre }) => genre === selectedGenre);
+      return this.arrMap(arr);
     } if (bookmarkedOnly === false && selectedGenre !== '') {
-      return movies.filter(({ title, subtitle, storyline }) => title.includes(searchText)
-        || subtitle.includes(searchText) || storyline.includes(searchText))
-        .filter(({ genre }) => genre === selectedGenre)
-        .map((movie) => <MovieCard data-testid="movie-card" key={ movie.title } movie={ movie } />);
+      const arr = this.searchTextFun(searchText, movies)
+        .filter(({ genre }) => genre === selectedGenre);
+      return this.arrMap(arr);
     }
-    return movies.filter(({ title, subtitle, storyline }) => title.includes(searchText)
-        || subtitle.includes(searchText) || storyline.includes(searchText))
-      .map((movie) => <MovieCard data-testid="movie-card" key={ movie.title } movie={ movie } />);
+    const arr = this.searchTextFun(searchText, movies);
+    return this.arrMap(arr);
   }
 
   render() {

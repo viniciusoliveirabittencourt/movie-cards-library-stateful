@@ -30,8 +30,7 @@ class MovieLibrary extends React.Component {
     movie.push(state);
     this.setState({
       movies: movie,
-    });
-    callback();
+    }, () => callback);
   }
 
   render() {
